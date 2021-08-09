@@ -1,0 +1,28 @@
+@import '../Global.scss';
+
+.form-page{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    padding-top: 40px;
+
+    .card{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        height: 500px;
+        width: 50%;
+        -webkit-box-shadow: 0 0 10px rgb(0,0,0);
+        -moz-box-shadow: 0 0 10px rgb(0,0,0);
+        margin-right: 100px;
+
+        .slider{
+            
+            color: $navColor;
+        }
+    }
+}
