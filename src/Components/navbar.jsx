@@ -1,31 +1,63 @@
 import React, { Component } from 'react';
 import './navbar.scss'
 import Avatar from '@material-ui/core/Avatar';
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import { Link } from 'react-router-dom';
+
+function ElevationScroll(props) {
+    const { children, window } = props;
+    // Note that you normally won't need to set the window ref as useScrollTrigger
+    // will default to window.
+    // This is only being set here because the demo is in an iframe.
+    const trigger = useScrollTrigger({
+      disableHysteresis: true,
+      threshold: 0,
+      target: window ? window() : undefined,
+    });
+  
+    return React.cloneElement(children, {
+      elevation: trigger ? 4 : 0,
+    });
+  }
+  
+  ElevationScroll.propTypes = {
+    children: PropTypes.element.isRequired,
+    /**
+     * Injected by the documentation to work in an iframe.
+     * You won't need it on your project.
+     */
+    window: PropTypes.func,
+  };
 
 class navbar extends Component {
     render() {
         return (
-            
-                <AppBar style={{backgroundColor:'rgb(17, 180, 17)'}} className="appbar" position="fixed">
+            <React.Fragment>
+            <CssBaseline />
+            <ElevationScroll {...this.props}>
+            <AppBar style={{backgroundColor:'rgb(17, 180, 17)'}} className="appbar" >
                     <Toolbar>
                         <div className="nav">
                             <div className="left">
-                                <div className="app-title">Finit</div>
+                                <div className="app-title"><Link style={{textDecoration:'none',color:'inherit'}} to="/">Finit</Link></div>
                             </div>
                     
                             <div className="right">
                                 <div className="avatar-wrapper">
                                 <Avatar className="avatar">{(this.props.userName === 'Unknown'?`Un`:this.props.userName[0].toUpperCase())}</Avatar>
                                 </div>
-                                <div className="username">{this.props.userName}</div>
+                                <div className="username"><Link style={{textDecoration:'none',color:'inherit'}} to="/intro">{this.props.userName}</Link></div>
                             </div>
                         </div>
                     </Toolbar>
                 </AppBar>
-                
-           
+            </ElevationScroll>
+            <Toolbar />
+          </React.Fragment>
         );
     }
 }
