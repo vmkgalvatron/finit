@@ -20,8 +20,8 @@ function App() {
         <Navbar userName={userName}/>
         <Router>
           <Switch>
-            <Route exact path="/" component={()=><Intro userName={userName} setUserName={setUserName}/>}/>
-            <Route  path="/form-page" component={()=><Form userName={userName} setUserName={setUserName}/>}/>
+            <Route exact path="/intro" component={()=><Intro userName={userName} setUserName={setUserName}/>}/>
+            <Route   path="/form-page" component={()=><Form userName={userName} setUserName={setUserName}/>}/>
           </Switch>
         </Router>
     </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './intro.scss';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withRouter } from 'react-router-dom';
+import image1 from '../images/image1.png';
 
 
 
@@ -17,19 +18,14 @@ class intro extends Component {
             amount:'',
             userName:'',
             markedCheackeBox:false,
-            modalOpen:false,
-            activateLink:false,
+
         }
     }
   
 
     handleChangeName = (event)=>{
         console.log(event.target.value);
-        this.setState({userName:event.target.value,modalOpen:false});
-        if(event.target.value.length>0)
-            this.setState({activateLink:true});
-        else
-            this.setState({activateLink:false});
+        this.setState({userName:event.target.value});
         
     }
 
@@ -43,9 +39,7 @@ class intro extends Component {
     handleSubmit = (event)=>{
         
         event.preventDefault();
-        if(this.state.userName.length===0)
-            this.setState({modalOpen:true});
-        else{
+        if(this.state.userName.length>0){
             this.props.setUserName(this.state.userName);
         }
         const {history} = this.props;
@@ -54,9 +48,6 @@ class intro extends Component {
         
     }
 
-    handleClose=()=>{
-        this.setState({modalOpen:false});
-    }
 
     render() {
         
@@ -72,6 +63,11 @@ class intro extends Component {
                         onChange={this.handleChangeAmount}
                         className="input"/>
                     </div>
+                    <div style={{width:'80%',display:'flex',justifyContent:'flex-start'}}>
+                        {
+                            this.state.amount.length===0 && <div style={{color:'red'}}>Required</div>
+                        }
+                    </div>
 
                     <div className="field">
                         <input
@@ -79,6 +75,11 @@ class intro extends Component {
                         onChange = {this.handleChangeName}
                         placeholder="Enter Name"
                         className="input"/>
+                    </div>
+                    <div style={{width:'80%',display:'flex',justifyContent:'flex-start',marginBottom:'10px'}}>
+                        {
+                            this.state.userName.length===0 && <div style={{color:'red'}}>Required</div>
+                        }
                     </div>
 
                     <div className="note">
@@ -96,12 +97,11 @@ class intro extends Component {
                         </div>
                     </div>
                     <div onClick={this.handleSubmit} className={(this.state.markedCheackeBox ? 'submit-button':'disabled-button')}>
-                        {/* {
-                            !this.state.activateLink || !this.state.markedCheackeBox?'Submit':
-                            <Link style={{textDecoration:'none',color:'white',height:'100px'}} to="/form-page">Submit</Link>
-                        } */}
                         Submit
                     </div>
+                </div>
+                <div className="image1-wrapper">
+                    <img className="image1" src={image1} alt="image1"/>
                 </div>
             </div>
         );
