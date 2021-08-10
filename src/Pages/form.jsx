@@ -48,6 +48,14 @@ class form extends Component {
         }
     }
 
+    componentDidMount(){
+        if(this.props.userName === 'Unknown'){
+            const {history} = this.props;
+            history.push("/intro");
+        }
+
+    }
+
     handleChangeSlider=(event,val)=>{
         this.setState({age:val});
     }

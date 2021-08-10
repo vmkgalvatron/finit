@@ -1,49 +1,48 @@
 @import '../Global.scss';
 
-.nav{
-    height: 10%;
-    width: 100%;
-    background-color: $navColor;
-    -webkit-box-shadow: 0 0 10px rgb(0,0,0);
-    -moz-box-shadow: 0 0 10px rgb(0,0,0);
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 30px;
-    position: fixed;
+.appbar{
+    background: $navColor;
     z-index: 3;
-    display: flex;
-    justify-content: space-between;
-
-    .left{
-        width: 50%;
-        .app-title{
-            margin-left: 20px;
-            font-weight: 700;
-        }
-    }
-
-    .right{
+    .nav{
+        width: 100%;
         display: flex;
-        width: 50%;
-        justify-content: flex-end;
         align-items: center;
-        .username{
-            margin-right: 40px;
-            font-size: 18px;
-            font-weight: 500;
-        }
-        .avatar-wrapper{
-            margin-right: 15px;
-
-            .avatar{
-                background-color: rgb(1, 131, 253);
-                color: white;
-                width: 40px;
-                height: 40px;
+        color: white;
+        font-size: 30px;
+        
+        display: flex;
+        justify-content: space-between;
+    
+        .left{
+            width: 50%;
+            .app-title{
+                margin-left: 20px;
+                font-weight: 700;
             }
         }
-    }
     
-
+        .right{
+            display: flex;
+            width: 50%;
+            justify-content: flex-end;
+            align-items: center;
+            .username{
+                margin-right: 40px;
+                font-size: 18px;
+                font-weight: 500;
+            }
+            .avatar-wrapper{
+                margin-right: 15px;
+    
+                .avatar{
+                    background-color: rgb(1, 131, 253);
+                    color: white;
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        }
+        
+    
+    }
 }
