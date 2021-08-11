@@ -3,10 +3,47 @@ import './intro.scss';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withRouter } from 'react-router-dom';
 import image1 from '../images/image1.png';
+import Navbar from '../Components/navbar';
+import { Slider } from '@material-ui/core';
+import {Card,Button,Container,ListGroup, ListGroupItem} from 'react-bootstrap';
+import {ReactComponent as Image} from "../images/image3.svg";
 
 
 
 const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/;
+
+const marks = [
+    {
+      value: 0,
+      label: '0%',
+    },
+    {
+      value: 100,
+      label: '100%',
+    },
+  ];
+
+  const age = [
+    {
+      value: 0,
+      label: '0',
+    },
+    {
+      value: 100,
+      label: '100 yrs',
+    },
+  ];
+
+  const period = [
+    {
+      value: 0,
+      label: '0',
+    },
+    {
+      value: 120,
+      label: '120 months',
+    },
+  ];
 
 
 
@@ -18,7 +55,10 @@ class intro extends Component {
             amount:'',
             userName:'',
             markedCheackeBox:false,
-
+            age:18,
+            risk:50,
+            expectations:50,
+            investment_period:12,
         }
     }
   
@@ -44,7 +84,30 @@ class intro extends Component {
         }
         const {history} = this.props;
         if(this.state.userName.length>0 && this.state.markedCheackeBox)
-            history.push("/form-page");
+            history.push("/investment-selection-page");
+        
+    }
+    handleChangeSlider=(event,val)=>{
+        this.setState({age:val});
+    }
+
+    handleChangeRiskSlider=(event,val)=>{
+        this.setState({risk:val});
+    }
+
+    handleChangeExpectationsSlider=(event,val)=>{
+        this.setState({expectations:val});
+    }
+
+    handleChangePeriodSlider=(event,val)=>{
+        this.setState({investment_period:val});
+    }
+
+    HandleSubmit = (event)=>{
+        
+        event.preventDefault();
+        const {history} = this.props;
+        history.push("/investment-selection-page");
         
     }
 
@@ -53,7 +116,8 @@ class intro extends Component {
         
         return (
             <div className="info-page">
-                <div className="card">
+                {/* <Navbar userName={this.props.userName}/> */}
+                <Card className="card">
                     <div className="field">
                         <input
                         value={this.state.amount}
@@ -63,7 +127,7 @@ class intro extends Component {
                         onChange={this.handleChangeAmount}
                         className="input"/>
                     </div>
-                    <div style={{width:'80%',display:'flex',justifyContent:'flex-start'}}>
+                    <div style={{width:'80%',display:'flex',justifyContent:'flex-start',marginLeft:'20px'}}>
                         {
                             this.state.amount.length===0 && <div style={{color:'red'}}>Required</div>
                         }
@@ -76,11 +140,69 @@ class intro extends Component {
                         placeholder="Enter Name"
                         className="input"/>
                     </div>
-                    <div style={{width:'80%',display:'flex',justifyContent:'flex-start',marginBottom:'10px'}}>
+                    <div style={{width:'80%',display:'flex',justifyContent:'flex-start',marginBottom:'10px',marginLeft:'20px'}}>
                         {
                             this.state.userName.length===0 && <div style={{color:'red'}}>Required</div>
                         }
                     </div>
+
+                    <div className="title-wrapper">
+                            <div style={{fontSize:'20px',color:'black',marginLeft:'40px'}}>Age ({this.state.age})</div>
+                        </div>
+                        
+                        <Slider
+                            className="slider"
+                            style={{width:'80%',marginLeft:'20px',marginBottom:'20px'}}
+                            value={this.age}
+                            onChange={this.handleChangeSlider}
+                            defaultValue={18}
+                            min={1}
+                            max={100}
+                            marks={age}
+                            valueLabelDisplay="auto"
+                        />
+                        <div className="title-wrapper">
+                            <div style={{fontSize:'20px',color:'black',marginLeft:'40px',marginTop:'20px'}}>Risk ({this.state.risk}%)</div>
+                        </div>
+                        <Slider
+                            className="slider"
+                            style={{width:'80%',marginLeft:'20px',marginBottom:'20px'}}
+                            value={this.state.risk}
+                            onChange={this.handleChangeRiskSlider}
+                            defaultValue={50}
+                            min={1}
+                            max={100}
+                            marks={marks}
+                            valueLabelDisplay="auto"
+                        />
+                        <div className="title-wrapper">
+                            <div style={{fontSize:'20px',color:'black',marginLeft:'40px',marginTop:'20px'}}>Expectations ({this.state.expectations}%)</div>
+                        </div>
+                        <Slider
+                            className="slider"
+                            style={{width:'80%',marginLeft:'20px',marginBottom:'20px'}}
+                            value={this.state.expectations}
+                            onChange={this.handleChangeExpectationsSlider}
+                            defaultValue={50}
+                            min={1}
+                            max={100}
+                            marks={marks}
+                            valueLabelDisplay="auto"
+                        />
+                        <div className="title-wrapper">
+                            <div style={{fontSize:'20px',color:'black',marginLeft:'40px',marginTop:'20px'}}>Investment Period ({this.state.investment_period} months)</div>
+                        </div>
+                        <Slider
+                            className="slider"
+                            style={{width:'80%',marginLeft:'20px',marginBottom:'20px'}}
+                            value={this.state.investment_period}
+                            onChange={this.handleChangePeriodSlider}
+                            defaultValue={12}
+                            min={1}
+                            max={120}
+                            marks={period}
+                            valueLabelDisplay="auto"
+                        />
 
                     <div className="note">
                         <div className='note-logo'>
@@ -96,13 +218,17 @@ class intro extends Component {
                             </div>
                         </div>
                     </div>
-                    <div onClick={this.handleSubmit} className={(this.state.markedCheackeBox ? 'submit-button':'disabled-button')}>
-                        Submit
+                    <div className="button-wrapper">
+                        <div onClick={this.handleSubmit} className={(this.state.markedCheackeBox ? 'submit-button':'disabled-button')}>
+                            Next
+                        </div>
                     </div>
-                </div>
-                <div className="image1-wrapper">
+                </Card>
+                {/* <div className="image1-wrapper">
                     <img className="image1" src={image1} alt="image1"/>
-                </div>
+                </div> */}
+                <Image className="images"/>
+                 
             </div>
         );
     }
