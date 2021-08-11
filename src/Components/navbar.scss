@@ -32,17 +32,18 @@
             align-items: center;
             .username{
                 margin-right: 40px;
-                font-size: 18px;
+                font-size: 20px;
                 font-weight: 500;
             }
             .avatar-wrapper{
                 margin-right: 15px;
     
                 .avatar{
-                    background-color: rgb(1, 131, 253);
-                    color: white;
+                    background-color: rgb(177, 253, 1);
+                    color: black;
                     width: 40px;
                     height: 40px;
+                    font-weight: 600;
                 }
             }
         }
