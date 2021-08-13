@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import {ReactComponent as Image} from "../images/crown.svg";
 import { Link } from 'react-router-dom';
 
 function ElevationScroll(props) {
@@ -34,6 +35,20 @@ function ElevationScroll(props) {
   };
 
 class navbar extends Component {
+  constructor(){
+    super();
+    this.state = {
+      username:'',
+    }
+  }
+
+  componentDidMount(){
+    this.setState({
+      username:this.props.userName
+    });
+  }
+
+
     render() {
         return (
             <React.Fragment>
@@ -47,6 +62,14 @@ class navbar extends Component {
                             </div>
                     
                             <div className="right">
+                              <Link style={{textDecoration:'none',color:'inherit'}} to="/underconstruction-page">
+                                <div  className="primium-button">
+                                  <div className="premium-button-text">
+                                  <Image className="crown-image"/> Try Finit Premium
+                                  </div>
+                                </div>
+                              </Link>
+                                
                                 <div className="avatar-wrapper">
                                 <Avatar className="avatar">{(this.props.userName === 'Unknown'?`Un`:this.props.userName[0].toUpperCase())}</Avatar>
                                 </div>

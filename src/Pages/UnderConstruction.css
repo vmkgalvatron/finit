@@ -1,0 +1,17 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet&family=Style+Script&display=swap');
+*{
+    font-family: 'Hahmlet', serif;
+}
+/* .wrapper{
+    width: 100%;
+} */
+.svg-image{
+    width: 40%;
+    height: 70%;
+    margin-left: 25%;
+    margin-top: 5%;
+}
+.underCon-p-tag{
+    padding: 5%;
+}

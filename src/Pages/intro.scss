@@ -43,8 +43,61 @@
 
         }
 
+        .age-toggle-wrapper{
+            width: 85%;
+            height: 56px;
+            display: flex;
+            // justify-content: space-between;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+            
+
+            .age-wrapper{
+                background-color: rgba(245, 238, 238, 0.664);
+                -webkit-box-shadow: 0 0 2px rgb(0,0,0);
+                -moz-box-shadow: 0 0 10px rgb(0,0,0);
+                height: 30px;
+                text-align: center;
+                padding: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // border-radius: 50px 0px 50px 50px;
+                transition: all 0.5s ease;
+
+                &:hover{
+                    cursor: pointer;
+                    opacity: 0.8;
+                    
+                }
+            }
+
+            .activate{
+                background-color: $navColor;
+                -webkit-box-shadow: 0 0 2px rgb(0,0,0);
+                -moz-box-shadow: 0 0 10px rgb(0,0,0);
+                color: white;
+                height: 30px;
+                text-align: center;
+                padding: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // border-radius: 50px 0px 50px 50px;
+                transition: all 0.5s ease;
+
+                &:hover{
+                    cursor: pointer;
+                    opacity: 0.8;
+                    
+                }
+            }
+
+        }
+
         .button-wrapper{
-            width: 80%;
+            width: 90%;
             // height: 90px;
             display: flex;
             justify-content: flex-end;
@@ -57,13 +110,16 @@
                 
                 color: white;
                 font-weight: 500;
-                -webkit-box-shadow: 0 0 5px 0 rgb(0,0,0);
+                -webkit-box-shadow: 0 0 2px 0 rgb(0,0,0);
                 -moz-box-shadow: 0 0 0 0 rgb(0,0,0);
                 transition: all 1s ease;
+                border-radius: 5px;
+                // border-radius: 50px 0px 50px 50px;
                 
                 &:hover{
                     cursor: pointer;
                     opacity: 0.8;
+                    transform: scale(1.1);
                 }
     
             }
@@ -77,6 +133,7 @@
                 // -webkit-box-shadow: 0 0 5px 0 rgb(0,0,0);
                 // -moz-box-shadow: 0 0 0 0 rgb(0,0,0);
                 transition: all 1s ease;
+                border-radius: 5px;
             }
         }
 
