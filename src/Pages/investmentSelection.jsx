@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import {Row, Col, Container, NavItem,Nav} from 'react-bootstrap';
+import {Row, Col, Container} from 'react-bootstrap';
 import SelectionCard from '../Components/selectionCard';
 import { withRouter } from 'react-router-dom';
-// import './si.scss';
-import Navbar from '../Components/navbar';
-import { useLocation } from "react-router-dom";
 
 
 
@@ -20,7 +17,6 @@ class InvestmentSelection extends Component {
 
     componentDidMount() {
         
-       console.log(this.props);
         if(this.props.userName === 'Unknown'){
             const {history} = this.props;
             history.push("/intro");
@@ -38,101 +34,173 @@ class InvestmentSelection extends Component {
 
 
     dataToRender = (i,itr)=>{
-        // console.log(this.props.location.state);
-        if(!this.props.location.state.isAbove18){
-            if(i.title === 'Gold' || i.title === 'Fixed Deposit' || i.title === 'Savings'){
-                return true;
-            }
-        }
-        else{
+        if(!this.props.location.state.isAbove18){ 
             if(this.props.location.state.risk === 3){
                 if(this.props.location.state.investment_period===1){
-                    if( i.title === 'Currency Exchange' ||
-                        i.title === 'Crypto Currency' || 
-                    i.title === 'Share Market'){
+                    if(
+                        i.title === 'Gold' 
+                    ){
                         return true;
                     }
                 }
                 else if(this.props.location.state.investment_period===2){
-                    if(i.title === 'Currency Exchange' ||
-                        i.title === 'Crypto Currency' || 
-                    i.title === 'Share Market' || 
-                    i.title === 'Savings' || 
-                    i.title === 'Gold'){
+                    if(
+                        i.title === 'Gold' 
+                    ){
                         return true;
                     }
                 }
                 else if(this.props.location.state.investment_period===3){
-                    if(i.title === 'Currency Exchange' ||
-                        i.title === 'Crypto Currency' 
-                    || i.title === 'Share Market' ||
-                     i.title === 'Real Estate' || 
-                     i.title === 'Mutual Funds' || 
-                     i.title === 'Royalties' || 
-                     i.title === 'Fixed Deposit'){
+                    if(
+
+                        i.title === 'Gold' 
+                    ){
                         return true;
                     }
                 }
             }
             else if(this.props.location.state.risk === 2){
                 if(this.props.location.state.investment_period===1){
-                    if(i.title === 'Currency Exchange' ||
-                        i.title === 'Real Estate' || 
-                    i.title === 'Mutual Funds' || 
-                    i.title === 'Royalties' || 
-                    i.title === 'Gold' ||
-                    i.title === 'Crypto Currency' ||
-                    i.title === 'Share Market'
+                    if(
+
+                        i.title === 'Gold' 
                     ){
                         return true;
                     }
                 }
                 else if(this.props.location.state.investment_period===2){
-                    if(i.title === 'Real Estate' || 
-                    i.title === 'Mutual Funds' || 
-                    i.title === 'Royalties' || 
-                    i.title === 'Gold' ||
-                    i.title === 'Savings'){
+                    if(
+                        i.title === 'Savings' ||
+                        i.title === 'Gold' 
+                    ){
                         return true;
                     }
                 }
                 else if(this.props.location.state.investment_period===3){
                     if(
-                    i.title === 'Real Estate' || 
-                    i.title === 'Mutual Funds' || 
-                    i.title === 'Royalties' || 
-                    i.title === 'Gold' || 
-                     i.title === 'Fixed Deposit'){
+                        i.title === 'Savings' ||
+                        i.title === 'Fixed Deposit' || 
+                        i.title === 'Gold' 
+                    ){
                         return true;
                     }
                 }
             }
             else{
                 if(this.props.location.state.investment_period===1){
-                    if(i.title === 'Currency Exchange' ||
-                     i.title === 'Savings'||
-                     i.title === 'Fixed Deposit'||   
-                    i.title === 'Crypto Currency' ||
-                    i.title === 'Share Market'
+                    if(
+                        i.title === 'Savings' 
                     ){
                         return true;
                     }
                 }
                 else if(this.props.location.state.investment_period===2){
                     if(
-                    i.title === 'Savings'||
-                    i.title === 'Fixed Deposit' 
+                        i.title === 'Savings' ||
+                        i.title === 'Fixed Deposit'
                     ){
                         return true;
                     }
                 }
                 else if(this.props.location.state.investment_period===3){
                     if(
-                    i.title === 'Savings'||
-                    i.title === 'Fixed Deposit' ||
-                    i.title === 'Real Estate' || 
-                    i.title === 'Mutual Funds' || 
-                    i.title === 'Royalties'
+                        i.title === 'Savings' ||
+                        i.title === 'Fixed Deposit' || 
+                        i.title === 'Gold'
+                    ){
+                        return true;
+                    }
+                }
+            }
+        }
+        else{
+            if(this.props.location.state.risk === 3){
+                if(this.props.location.state.investment_period===1){
+                    if(
+                        i.title === 'Share Market' ||
+                        i.title === 'Currency Exchange' || 
+                        i.title === 'Crypto Currency' 
+                    ){
+                        return true;
+                    }
+                }
+                else if(this.props.location.state.investment_period===2){
+                    if(
+                        i.title === 'Share Market' ||
+                        i.title === 'Currency Exchange' || 
+                        i.title === 'Crypto Currency' ||
+                        i.title === 'Royalties'
+                    ){
+                        return true;
+                    }
+                }
+                else if(this.props.location.state.investment_period===3){
+                    if(
+                        i.title === 'Share Market' ||
+                        i.title === 'Currency Exchange' || 
+                        i.title === 'Crypto Currency' ||
+                        i.title === 'Royalties' ||
+                        i.title === 'Mutual Funds' 
+                    ){
+                        return true;
+                    }
+                }
+            }
+            else if(this.props.location.state.risk === 2){
+                if(this.props.location.state.investment_period===1){
+                    if(
+                        i.title === 'Share Market' ||
+                        i.title === 'Gold' ||
+                        i.title === 'Currency Exchange' 
+                    ){
+                        return true;
+                    }
+                }
+                else if(this.props.location.state.investment_period===2){
+                    if(
+                        i.title === 'Share Market' ||
+                        i.title === 'Royalties' ||
+                        i.title === 'Real Estate'
+                    ){
+                        return true;
+                    }
+                }
+                else if(this.props.location.state.investment_period===3){
+                    if(
+                        i.title === 'Real Estate'||
+                        i.title === 'Fixed Deposit' || 
+                        i.title === 'Mutual Funds' ||
+                        i.title === 'Royalties'
+                    ){
+                        return true;
+                    }
+                }
+            }
+            else{
+                if(this.props.location.state.investment_period===1){
+                    if(
+                        i.title === 'Savings' ||
+                        i.title === 'Fixed Deposit'
+                    ){
+                        return true;
+                    }
+                }
+                else if(this.props.location.state.investment_period===2){
+                    if(
+                        i.title === 'Savings' ||
+                        i.title === 'Mutual Funds' ||
+                        i.title === 'Gold' 
+                    ){
+                        return true;
+                    }
+                }
+                else if(this.props.location.state.investment_period===3){
+                    if(
+                        i.title === 'Savings' ||
+                        i.title === 'Real Estate'||
+                        i.title === 'Fixed Deposit' || 
+                        i.title === 'Mutual Funds' ||
+                        i.title === 'Gold' 
                     ){
                         return true;
                     }
@@ -151,23 +219,12 @@ class InvestmentSelection extends Component {
             {title:'Fixed Deposit',description:'Somewhat higher returns but long investment period',stability:'high',period:'long'},
             {title:'Mutual Funds',description:'Midway of share market and Bank!',stability:'medium',period:'medium'},
             {title:'Gold',description:'Less fluctuating market but have to look after it.',stability:'medium',period:'flexible'},
-            {title:'Currency Exchange',decription:'',stability:'',period:'',},
-            {title:'Crypto Currency',decription:'',stability:'',period:'',},
-            {title:'Royalties',decription:'',stability:'',period:'',}
+            {title:'Currency Exchange',decription:'The value of currencies fluctuate from time to time according too each other. The same fluctuation is used to invest money.',stability:'medium',period:'medium',},
+            {title:'Crypto Currency',decription:'Crypto currency is decentralised digital currency based on the blockchain phenomena.',stability:'low',period:'low',},
+            {title:'Royalties',decription:'A royalty is a monetary compensation paid to the owner of an asset (often an intellectual property).',stability:'high',period:'long',}
         ];
         return(
             <div>
-                {/* <Navbar userName={this.props.userName}/> */}
-                {/* <Navbar className="navBar" bg="dark" variant="dark">
-                    <Container>
-                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                    <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
-                    </Nav>
-                    </Container>
-                </Navbar> */}
                 <Container>
                     <Row>
                         {options.map((i,itr)=>
