@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
 import {Card,Button,Container,ListGroup, ListGroupItem} from 'react-bootstrap';
 import './selectionCard.css';
+import { withRouter } from 'react-router-dom';
 
 class SelectionCard extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = {
+          id:'',
+        }
     }
+
+
+    handleClick = ()=>{
+
+      const {history} = this.props;
+            history.push({pathname:"/final-page",state:{
+                id:this.props.id,
+            }});
+    }
+    componentDidMount(){
+    }
+
     render() { 
         return ( 
           <Container style={{padding: 20}}>
@@ -16,11 +31,10 @@ class SelectionCard extends Component {
                 <Card.Text>
                 {this.props.data['description']} 
                 </Card.Text>
-                <Button style={{backgroundColor: '#11B411', borderColor: 'green'}}>Go somewhere</Button>
+                <Button className="go-somewhere" disabled={!this.props.isEnable}  onClick={this.handleClick} style={{backgroundColor: this.props.isEnable?'#11B411':'rgba(174, 204, 174, 0.8)',border:'none'}}>Next</Button>
               </Card.Body>
               <ListGroup className="list-group-flush">
                 <ListGroupItem>stability- {this.props.data['stability']}</ListGroupItem>
-                <ListGroupItem>returns- {this.props.data['returns']}</ListGroupItem>
                 <ListGroupItem>period- {this.props.data['period']}</ListGroupItem>
               </ListGroup>
             </Card>
@@ -29,4 +43,4 @@ class SelectionCard extends Component {
     }
 }
  
-export default SelectionCard;
+export default withRouter(SelectionCard);

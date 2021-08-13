@@ -6,13 +6,11 @@ import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import {ReactComponent as Image} from "../images/crown.svg";
 import { Link } from 'react-router-dom';
 
 function ElevationScroll(props) {
     const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
     const trigger = useScrollTrigger({
       disableHysteresis: true,
       threshold: 0,
@@ -26,14 +24,24 @@ function ElevationScroll(props) {
   
   ElevationScroll.propTypes = {
     children: PropTypes.element.isRequired,
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
     window: PropTypes.func,
   };
 
 class navbar extends Component {
+  constructor(){
+    super();
+    this.state = {
+      username:'',
+    }
+  }
+
+  componentDidMount(){
+    this.setState({
+      username:this.props.userName
+    });
+  }
+
+
     render() {
         return (
             <React.Fragment>
@@ -47,6 +55,14 @@ class navbar extends Component {
                             </div>
                     
                             <div className="right">
+                              <Link style={{textDecoration:'none',color:'inherit'}} to="/underconstruction-page">
+                                <div  className="primium-button">
+                                  <div className="premium-button-text">
+                                  <Image className="crown-image"/> Try Finit Premium
+                                  </div>
+                                </div>
+                              </Link>
+                                
                                 <div className="avatar-wrapper">
                                 <Avatar className="avatar">{(this.props.userName === 'Unknown'?`Un`:this.props.userName[0].toUpperCase())}</Avatar>
                                 </div>
